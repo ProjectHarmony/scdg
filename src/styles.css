@@ -1257,6 +1257,14 @@ textarea {
   gap: 12px;
 }
 
+.admin-form .btn-primary,
+.admin-form .btn-outline {
+  width: fit-content;
+  min-width: 132px;
+  justify-self: start;
+  align-self: center;
+}
+
 .file-label {
   display: inline-flex;
   min-height: 46px;
@@ -1555,5 +1563,10 @@ footer {
   .btn-outline {
     width: 100%;
     padding-inline: 14px;
+  }
+
+  .admin-form .btn-primary,
+  .admin-form .btn-outline {
+    width: fit-content;
   }
 }

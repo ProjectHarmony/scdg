@@ -7,7 +7,7 @@ export function SettingsPanel({ email }) {
       <div className="data-card">
         <h3>Admin Account</h3>
         <p><b>Email:</b> {email}</p>
-        <p>Admin access is only linked from /administrator_0925 and managed by Supabase Auth + profiles role.</p>
+        <p>Admin access uses a private route and is managed by Supabase Auth + profiles role.</p>
       </div>
     </div>
   );

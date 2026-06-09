@@ -10,7 +10,7 @@ import { Login } from './pages/Login';
 import { Rankings } from './pages/Rankings';
 import { Store } from './pages/Store';
 
-const ADMIN_PATH = '/administrator_0925';
+const ADMIN_PATH = '/A9xQ7mLp42Zr';
 
 export function App() {
   const showAdminLink = window.location.pathname === ADMIN_PATH;
