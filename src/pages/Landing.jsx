@@ -35,16 +35,12 @@ export function Landing({ players, founders, storeItems, socialLinks, loading, e
           <img className="hero-blade" src={FALLBACK_IMAGE} alt="S-CDG Logo" />
           <div className="hero-mini-card">
             <div>
-              <strong>3V3</strong>
+              <strong>1G/3G/5G</strong>
               <span>Deck Format</span>
             </div>
             <div>
               <strong>X</strong>
               <span>Beyblade System</span>
-            </div>
-            <div>
-              <strong>S-CDG</strong>
-              <span>Local Bladers</span>
             </div>
           </div>
         </div>
