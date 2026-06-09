@@ -7,6 +7,7 @@ import { Admin } from './pages/Admin';
 import { Events } from './pages/Events';
 import { Landing } from './pages/Landing';
 import { Login } from './pages/Login';
+import { Rankings } from './pages/Rankings';
 import { Store } from './pages/Store';
 
 const ADMIN_PATH = '/administrator_0925';
@@ -111,6 +112,7 @@ export function App() {
           setPage={setPage}
         />
       )}
+      {page === 'rankings' && <Rankings players={publicPlayers} loading={loading} error={error} />}
       {page === 'events' && <Events events={publicEvents} loading={loading} error={error} />}
       {page === 'store' && <Store products={storeItems.filter(item => item.is_active)} loading={loading} error={error} />}
       {page === 'admin' &&

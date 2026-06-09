@@ -103,31 +103,6 @@ export function Landing({ players, founders, storeItems, socialLinks, loading, e
         <ProductGrid products={storeItems} />
       </section>
 
-      {players.length > 0 && <section id="players" className="reveal">
-        <div className="section-tag">Rankings</div>
-        <h2 className="section-title">
-          Player <span>Rankings</span>
-        </h2>
-        <div className="rankings-grid">
-          {players.map((player, index) => (
-            <article className="ranking-card" key={player.id}>
-              <strong className="ranking-position">#{index + 1}</strong>
-              <img
-                src={player.imageUrl}
-                onError={event => {
-                  event.currentTarget.src = FALLBACK_IMAGE;
-                }}
-                alt={player.name}
-              />
-              <div>
-                <div className="player-name">{player.name}</div>
-                <div className="ranking-meta">{player.mmr} MMR / {player.wins}W - {player.losses}L / {player.matchesPlayed} matches</div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>}
-
       <section className="reveal">
         <div className="contact-card">
           <div>

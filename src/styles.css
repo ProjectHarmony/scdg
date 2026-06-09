@@ -819,6 +819,83 @@ textarea {
   margin-top: 34px;
 }
 
+.rankings-podium {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.podium-card {
+  position: relative;
+  display: grid;
+  min-height: 360px;
+  align-content: start;
+  justify-items: center;
+  gap: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 76, 0.28);
+  border-radius: 24px;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(201, 168, 76, 0.22), transparent 38%),
+    #0b0b0b;
+  text-align: center;
+}
+
+.podium-1 {
+  min-height: 410px;
+  border-color: rgba(245, 215, 142, 0.7);
+  box-shadow: 0 24px 70px rgba(201, 168, 76, 0.14);
+}
+
+.podium-2,
+.podium-3 {
+  min-height: 340px;
+}
+
+.podium-rank {
+  color: var(--gold-soft);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 8vw, 92px);
+  line-height: 0.8;
+}
+
+.podium-label {
+  color: var(--gold-soft);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.podium-card img {
+  width: clamp(112px, 14vw, 160px);
+  height: clamp(112px, 14vw, 160px);
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #080808;
+}
+
+.podium-card h2 {
+  margin-top: 6px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(34px, 5vw, 52px);
+  letter-spacing: 2px;
+}
+
+.podium-card p {
+  color: var(--gold-soft);
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.rankings-list {
+  margin-top: 22px;
+}
+
 .ranking-card {
   display: grid;
   grid-template-columns: 54px 72px 1fr;
@@ -1420,6 +1497,17 @@ footer {
 
   .admin-tabs button {
     width: 100%;
+  }
+
+  .rankings-podium {
+    grid-template-columns: 1fr;
+  }
+
+  .podium-card,
+  .podium-1,
+  .podium-2,
+  .podium-3 {
+    min-height: auto;
   }
 
   .founders-carousel {
