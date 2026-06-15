@@ -1,13 +1,16 @@
 import { CalendarDays, MapPin } from 'lucide-react';
+import { SectionIntro } from '../components/SectionIntro';
 import { FALLBACK_IMAGE } from '../lib/constants';
 
 export function Events({ events, loading, error }) {
   return (
     <main className="page">
-      <div className="section-tag">Events</div>
-      <h1 className="section-title">
-        Event <span>List</span>
-      </h1>
+      <SectionIntro
+        tag="Events"
+        title="Battle"
+        highlight="Schedule"
+        copy="Upcoming active events pulled from Supabase, sorted so the nearest battle appears first."
+      />
       {loading && <div className="status-card">Loading events...</div>}
       {error && <div className="status-card error-state">{error}</div>}
       {!loading && !error && !events.length && (
