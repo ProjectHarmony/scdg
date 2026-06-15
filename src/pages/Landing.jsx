@@ -1,8 +1,9 @@
 import { FoundersCarousel } from '../components/FoundersCarousel';
+import { HeroShowpiece } from '../components/HeroShowpiece';
 import { ProductGrid } from '../components/ProductGrid';
+import { SectionIntro } from '../components/SectionIntro';
 import { SocialLinks } from '../components/SocialLinks';
 import { useReveal } from '../hooks/useReveal';
-import { FALLBACK_IMAGE } from '../lib/constants';
 
 export function Landing({ players, founders, storeItems, socialLinks, loading, error, setPage }) {
   useReveal();
@@ -11,52 +12,46 @@ export function Landing({ players, founders, storeItems, socialLinks, loading, e
     <main>
       <section className="hero">
         <div className="hero-content reveal">
-          <div className="eyebrow">Beyblade X Community</div>
+          <div className="eyebrow">Beyblade X Competitive Community</div>
           <h1 className="hero-name">
             S-CDG <span>Bladers</span>
           </h1>
           <p className="hero-sub">
-            Competitive Beyblade X community focused on skill, strategy, deck
-            building, and local tournaments.
+            A sharper home for ranked battles, community events, merch drops,
+            and the players pushing the local Beyblade X scene forward.
           </p>
           <div className="hero-cta">
             <button className="btn-primary" onClick={() => setPage('events')}>
               Join Event
             </button>
+            <button className="btn-outline" onClick={() => setPage('rankings')}>
+              View Rankings
+            </button>
             <button
-              className="btn-outline"
+              className="btn-ghost"
               onClick={() => document.getElementById('founders')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Meet Founders
             </button>
           </div>
-        </div>
-        <div className="hero-card reveal">
-          <img className="hero-blade" src={FALLBACK_IMAGE} alt="S-CDG Logo" />
-          <div className="hero-mini-card">
-            <div>
-              <strong>1G/3G/5G</strong>
-              <span>Deck Format</span>
-            </div>
-            <div>
-              <strong>X</strong>
-              <span>Beyblade System</span>
-            </div>
+          <div className="hero-signal-strip" aria-label="S-CDG website highlights">
+            <span>Live CMS</span>
+            <span>MMR Rankings</span>
+            <span>Event Links</span>
           </div>
         </div>
+        <HeroShowpiece />
       </section>
 
-      <section className="reveal">
-        <div className="about-card">
+      <section className="reveal section-band">
+        <div className="about-card feature-panel">
           <div>
-            <div className="section-tag">About Us</div>
-            <h2 className="section-title">
-              Built for <span>Bladers</span>
-            </h2>
-            <p>
-              We are a growing Beyblade X community dedicated to competitive play,
-              training sessions, local tournaments, and friendly battles.
-            </p>
+            <SectionIntro
+              tag="About Us"
+              title="Built for"
+              highlight="Bladers"
+              copy="We are a growing Beyblade X community dedicated to competitive play, training sessions, local tournaments, and friendly battles."
+            />
           </div>
           <div className="stats-row">
             <div className="stat-box">
@@ -76,14 +71,12 @@ export function Landing({ players, founders, storeItems, socialLinks, loading, e
       </section>
 
       <section id="featured">
-        <div className="section-head reveal">
-          <div>
-            <div className="section-tag">Founders</div>
-            <h2 className="section-title">
-              Meet the <span>Founders</span>
-            </h2>
-          </div>
-        </div>
+        <SectionIntro
+          tag="Founders"
+          title="Meet the"
+          highlight="Founders"
+          copy="Representatives and community builders managed directly from the admin dashboard."
+        />
         <div id="founders" className="reveal">
           {loading && <div className="status-card">Loading founders...</div>}
           {error && <div className="status-card error-state">{error}</div>}
@@ -91,22 +84,25 @@ export function Landing({ players, founders, storeItems, socialLinks, loading, e
         </div>
       </section>
 
-      <section className="reveal">
-        <div className="section-tag">Store</div>
-        <h2 className="section-title">
-          Team <span>Merch</span>
-        </h2>
+      <section className="reveal section-band">
+        <SectionIntro
+          tag="Store"
+          title="Team"
+          highlight="Merch"
+          copy="Community items published from Supabase. Checkout stays intentionally simple for now."
+        />
         <ProductGrid products={storeItems} />
       </section>
 
-      <section className="reveal">
+      <section className="reveal section-band">
         <div className="contact-card">
           <div>
-            <div className="section-tag">Contact</div>
-            <h2 className="section-title">
-              Join the <span>Community</span>
-            </h2>
-            <p>Want to battle, train, or join tournaments? Connect with us on social media.</p>
+            <SectionIntro
+              tag="Contact"
+              title="Join the"
+              highlight="Community"
+              copy="Want to battle, train, or join tournaments? Connect with us on social media."
+            />
           </div>
           <SocialLinks links={socialLinks} />
         </div>

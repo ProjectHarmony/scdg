@@ -1,3 +1,4 @@
+import { SectionIntro } from '../components/SectionIntro';
 import { FALLBACK_IMAGE } from '../lib/constants';
 
 const medalLabels = ['Champion', 'Second Place', 'Third Place'];
@@ -8,10 +9,12 @@ export function Rankings({ players, loading, error }) {
 
   return (
     <main className="page">
-      <div className="section-tag">Rankings</div>
-      <h1 className="section-title">
-        Player <span>Rankings</span>
-      </h1>
+      <SectionIntro
+        tag="Rankings"
+        title="S-CDG"
+        highlight="Leaderboard"
+        copy="Active players only, sorted by MMR with wins and match volume as tiebreakers."
+      />
       {loading && <div className="status-card">Loading rankings...</div>}
       {error && <div className="status-card error-state">{error}</div>}
       {!loading && !error && !players.length && (
