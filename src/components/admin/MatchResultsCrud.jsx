@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Pencil, Plus, RefreshCcw, Trash2, Upload } from 'lucide-react';
+import { Pencil, Plus, Trash2, Upload } from 'lucide-react';
 import { AdminModal, AdminSectionHeader, EmptyState, SearchBox } from './AdminShell';
 import { supabase } from '../../lib/supabase';
 
@@ -23,7 +23,7 @@ function parseCsv(text) {
   });
 }
 
-export function MatchResultsCrud({ items, players, refreshAll, notify }) {
+export function MatchResultsCrud({ items, refreshAll, notify }) {
   const [query, setQuery] = useState('');
   const [form, setForm] = useState(emptyMatch);
   const [editingId, setEditingId] = useState('');
@@ -69,53 +69,12 @@ export function MatchResultsCrud({ items, players, refreshAll, notify }) {
     refreshAll();
   }
 
-  async function recalculateRankings() {
-    const stats = new Map(players.map(player => [player.name, { ...player, wins: 0, losses: 0, matches_played: 0, mmr: 1000 }]));
-    items.forEach(match => {
-      [match.player_1, match.player_2].forEach(name => {
-        if (!stats.has(name)) stats.set(name, { name, image_url: '', wins: 0, losses: 0, matches_played: 0, mmr: 1000, is_active: true });
-      });
-      const p1 = stats.get(match.player_1);
-      const p2 = stats.get(match.player_2);
-      p1.matches_played += 1;
-      p2.matches_played += 1;
-      if (match.winner === match.player_1) {
-        p1.wins += 1; p2.losses += 1; p1.mmr += 25; p2.mmr = Math.max(0, p2.mmr - 15);
-      } else if (match.winner === match.player_2) {
-        p2.wins += 1; p1.losses += 1; p2.mmr += 25; p1.mmr = Math.max(0, p1.mmr - 15);
-      }
-    });
-
-    for (const player of stats.values()) {
-      const payload = {
-        name: player.name,
-        image_url: player.image_url || '',
-        wins: player.wins,
-        losses: player.losses,
-        matches_played: player.matches_played,
-        mmr: player.mmr,
-        is_active: player.is_active ?? true,
-      };
-      const existing = players.find(item => item.name === player.name);
-      const request = existing
-        ? supabase.from('players').update(payload).eq('id', existing.id)
-        : supabase.from('players').insert(payload);
-      const { error } = await request;
-      if (error) {
-        notify(error.message, 'error');
-        return;
-      }
-    }
-    notify('Rankings recalculated.');
-    refreshAll();
-  }
-
   return (
     <div className="admin-panel">
       <AdminSectionHeader
         title="Match Results"
         description="Import CSV or manage match history manually."
-        action={<div className="admin-row-actions"><label className="btn-outline"><Upload size={16} /> Import CSV<input className="hidden-input" type="file" accept=".csv,text/csv" onChange={event => importCsv(event.target.files[0])} /></label><button className="btn-primary" onClick={() => { setForm(emptyMatch); setEditingId(''); setModalOpen(true); }}><Plus size={16} /> Add Match</button><button className="btn-outline" onClick={recalculateRankings}><RefreshCcw size={16} /> Recalculate</button></div>}
+        action={<div className="admin-row-actions"><label className="btn-outline"><Upload size={16} /> Import CSV<input className="hidden-input" type="file" accept=".csv,text/csv" onChange={event => importCsv(event.target.files[0])} /></label><button className="btn-primary" onClick={() => { setForm(emptyMatch); setEditingId(''); setModalOpen(true); }}><Plus size={16} /> Add Match</button></div>}
       />
       {importSummary && <div className="status-card">{importSummary}</div>}
       <SearchBox value={query} onChange={setQuery} placeholder="Search matches..." />

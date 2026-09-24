@@ -15,7 +15,7 @@ const titles = {
   dashboard: 'Dashboard',
   founders: 'Founders',
   events: 'Events',
-  players: 'Players / Rankings',
+  players: 'Players',
   matches: 'Match Results',
   store: 'Store',
   social: 'Social Links',
@@ -60,7 +60,7 @@ export function Admin({
       {tab === 'founders' && <FounderCrud items={founders} refreshAll={refreshAll} notify={notify} />}
       {tab === 'events' && <EventCrud items={events} refreshAll={refreshAll} notify={notify} />}
       {tab === 'players' && <PlayerCrud items={players} refreshAll={refreshAll} notify={notify} />}
-      {tab === 'matches' && <MatchResultsCrud items={matches} players={players} refreshAll={refreshAll} notify={notify} />}
+      {tab === 'matches' && <MatchResultsCrud items={matches} refreshAll={refreshAll} notify={notify} />}
       {tab === 'store' && <StoreCrud items={storeItems} refreshAll={refreshAll} notify={notify} />}
       {tab === 'social' && <SocialLinksCrud items={socialLinks} refreshAll={refreshAll} notify={notify} />}
       {tab === 'settings' && <SettingsPanel email={session?.user?.email} />}

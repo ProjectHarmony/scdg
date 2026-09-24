@@ -1,9 +1,17 @@
+import { m } from 'framer-motion';
 import { FoundersCarousel } from '../components/FoundersCarousel';
 import { HeroShowpiece } from '../components/HeroShowpiece';
 import { ProductGrid } from '../components/ProductGrid';
 import { SectionIntro } from '../components/SectionIntro';
 import { SocialLinks } from '../components/SocialLinks';
 import { useReveal } from '../hooks/useReveal';
+
+const sectionMotion = {
+  initial: { opacity: 0, y: 36 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.16 },
+  transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+};
 
 export function Landing({ players, founders, storeItems, socialLinks, loading, error, setPage }) {
   useReveal();
@@ -17,33 +25,25 @@ export function Landing({ players, founders, storeItems, socialLinks, loading, e
             S-CDG <span>Bladers</span>
           </h1>
           <p className="hero-sub">
-            A sharper home for ranked battles, community events, merch drops,
+            A sharper home for community battles, events, merch drops,
             and the players pushing the local Beyblade X scene forward.
           </p>
           <div className="hero-cta">
             <button className="btn-primary" onClick={() => setPage('events')}>
               Join Event
             </button>
-            <button className="btn-outline" onClick={() => setPage('rankings')}>
-              View Rankings
-            </button>
             <button
-              className="btn-ghost"
+              className="btn-outline"
               onClick={() => document.getElementById('founders')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Meet Founders
             </button>
           </div>
-          <div className="hero-signal-strip" aria-label="S-CDG website highlights">
-            <span>Live CMS</span>
-            <span>MMR Rankings</span>
-            <span>Event Links</span>
-          </div>
         </div>
         <HeroShowpiece />
       </section>
 
-      <section className="reveal section-band">
+      <m.section {...sectionMotion}>
         <div className="about-card feature-panel">
           <div>
             <SectionIntro
@@ -68,7 +68,7 @@ export function Landing({ players, founders, storeItems, socialLinks, loading, e
             </div>
           </div>
         </div>
-      </section>
+      </m.section>
 
       <section id="featured">
         <SectionIntro
@@ -84,7 +84,7 @@ export function Landing({ players, founders, storeItems, socialLinks, loading, e
         </div>
       </section>
 
-      <section className="reveal section-band">
+      <m.section {...sectionMotion}>
         <SectionIntro
           tag="Store"
           title="Team"
@@ -92,9 +92,9 @@ export function Landing({ players, founders, storeItems, socialLinks, loading, e
           copy="Community items published from Supabase. Checkout stays intentionally simple for now."
         />
         <ProductGrid products={storeItems} />
-      </section>
+      </m.section>
 
-      <section className="reveal section-band">
+      <m.section {...sectionMotion}>
         <div className="contact-card">
           <div>
             <SectionIntro
@@ -106,7 +106,7 @@ export function Landing({ players, founders, storeItems, socialLinks, loading, e
           </div>
           <SocialLinks links={socialLinks} />
         </div>
-      </section>
+      </m.section>
     </main>
   );
 }
