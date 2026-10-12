@@ -8,14 +8,19 @@ import { Admin } from './pages/Admin';
 import { Events } from './pages/Events';
 import { Landing } from './pages/Landing';
 import { Login } from './pages/Login';
+import { JudgeScoring } from './pages/JudgeScoring';
 import { Store } from './pages/Store';
 
 const ADMIN_PATH = '/A9xQ7mLp42Zr';
+const JUDGE_PATH = '/judge';
+const JUDGE_DEMO_PATH = '/judge/demo';
 const loadMotionFeatures = () => import('./lib/motionFeatures').then(module => module.default);
 
 export function App() {
   const showAdminLink = window.location.pathname === ADMIN_PATH;
-  const [page, setPage] = useState(showAdminLink ? 'admin' : 'home');
+  const showJudgeDemo = window.location.pathname === JUDGE_DEMO_PATH;
+  const showJudge = window.location.pathname === JUDGE_PATH;
+  const [page, setPage] = useState(showAdminLink ? 'admin' : showJudgeDemo ? 'judge-demo' : showJudge ? 'judge' : 'home');
   const [session, setSession] = useState(null);
   const [players, setPlayers] = useState([]);
   const [founders, setFounders] = useState([]);
@@ -97,10 +102,7 @@ export function App() {
   return (
     <MotionConfig reducedMotion="user">
       <LazyMotion features={loadMotionFeatures} strict>
-        <Navbar
-          page={page}
-          setPage={setPage}
-        />
+        {!['judge', 'judge-demo'].includes(page) && <Navbar page={page} setPage={setPage} />}
         {page === 'home' && (
           <Landing
             players={publicPlayers}
@@ -114,6 +116,24 @@ export function App() {
         )}
         {page === 'events' && <Events events={publicEvents} loading={loading} error={error} />}
         {page === 'store' && <Store products={storeItems.filter(item => item.is_active)} loading={loading} error={error} />}
+        {page === 'judge-demo' && (
+          <JudgeScoring
+            demo
+            onExit={() => {
+              window.history.pushState({}, '', '/');
+              setPage('home');
+            }}
+          />
+        )}
+        {page === 'judge' && (
+          <JudgeScoring
+            session={session}
+            onExit={() => {
+              window.history.pushState({}, '', '/');
+              setPage('home');
+            }}
+          />
+        )}
         {page === 'admin' &&
           (!envReady ? (
             <MissingEnv />
@@ -133,7 +153,7 @@ export function App() {
           ) : (
             <Login refreshSession={refreshSession} />
           ))}
-        <footer>Copyright 2026 S-CDG Bladers. All rights reserved.</footer>
+        {!['judge', 'judge-demo'].includes(page) && <footer>Copyright 2026 S-CDG Bladers. All rights reserved.</footer>}
       </LazyMotion>
     </MotionConfig>
   );

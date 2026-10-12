@@ -6,6 +6,7 @@ import {
   Settings,
   ShieldCheck,
   Swords,
+  Trophy,
   Users,
 } from 'lucide-react';
 
@@ -13,6 +14,7 @@ const navItems = [
   ['dashboard', 'Dashboard', BarChart3],
   ['founders', 'Founders', ShieldCheck],
   ['events', 'Events', CalendarDays],
+  ['tournaments', 'Tournaments', Trophy],
   ['players', 'Players', Users],
   ['matches', 'Match Results', Swords],
   ['store', 'Store', Package],

@@ -9,12 +9,14 @@ import { PlayerCrud } from '../components/admin/PlayerCrud';
 import { SettingsPanel } from '../components/admin/SettingsPanel';
 import { SocialLinksCrud } from '../components/admin/SocialLinksCrud';
 import { StoreCrud } from '../components/admin/StoreCrud';
+import { TournamentCrud } from '../components/admin/TournamentCrud';
 import { supabase } from '../lib/supabase';
 
 const titles = {
   dashboard: 'Dashboard',
   founders: 'Founders',
   events: 'Events',
+  tournaments: 'Tournaments',
   players: 'Players',
   matches: 'Match Results',
   store: 'Store',
@@ -59,6 +61,7 @@ export function Admin({
       {tab === 'dashboard' && <DashboardOverview founders={founders} events={events} players={players} matches={matches} storeItems={storeItems} />}
       {tab === 'founders' && <FounderCrud items={founders} refreshAll={refreshAll} notify={notify} />}
       {tab === 'events' && <EventCrud items={events} refreshAll={refreshAll} notify={notify} />}
+      {tab === 'tournaments' && <TournamentCrud notify={notify} />}
       {tab === 'players' && <PlayerCrud items={players} refreshAll={refreshAll} notify={notify} />}
       {tab === 'matches' && <MatchResultsCrud items={matches} refreshAll={refreshAll} notify={notify} />}
       {tab === 'store' && <StoreCrud items={storeItems} refreshAll={refreshAll} notify={notify} />}
