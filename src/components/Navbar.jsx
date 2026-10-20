@@ -1,6 +1,5 @@
 const links = [
   ['home', 'Home'],
-  ['rankings', 'Rankings'],
   ['events', 'Events'],
   ['store', 'Store'],
 ];

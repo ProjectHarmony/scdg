@@ -3,6 +3,7 @@ node_modules
 
 # build
 dist
+supabase/.temp/
 
 # env files (VERY IMPORTANT)
 .env

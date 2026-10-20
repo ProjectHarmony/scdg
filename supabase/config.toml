@@ -1,0 +1,4 @@
+project_id = "xnupawmlfkyjprdjxadd"
+
+[functions.challonge-oauth-callback]
+verify_jwt = false

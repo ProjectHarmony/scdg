@@ -2,11 +2,11 @@ import {
   BarChart3,
   CalendarDays,
   Link as LinkIcon,
-  Medal,
   Package,
   Settings,
   ShieldCheck,
   Swords,
+  Trophy,
   Users,
 } from 'lucide-react';
 
@@ -14,7 +14,8 @@ const navItems = [
   ['dashboard', 'Dashboard', BarChart3],
   ['founders', 'Founders', ShieldCheck],
   ['events', 'Events', CalendarDays],
-  ['players', 'Players / Rankings', Medal],
+  ['tournaments', 'Tournaments', Trophy],
+  ['players', 'Players', Users],
   ['matches', 'Match Results', Swords],
   ['store', 'Store', Package],
   ['social', 'Social Links', LinkIcon],

@@ -6,14 +6,20 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@supabase/supabase-js": "latest",
     "@vitejs/plugin-react": "^5.2.0",
+    "framer-motion": "^13.4.1",
     "lucide-react": "latest",
     "react": "latest",
     "react-dom": "latest",
     "vite": "^7.3.5"
+  },
+  "devDependencies": {
+    "vitest": "^5.0.1"
   }
 }
